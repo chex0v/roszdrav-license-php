@@ -1,5 +1,5 @@
 {
-    "name": "lh/roszdrav-license-php",
+    "name": "chex0v/roszdrav-license-php",
     "description": "Parser information about license from site roszdravnadzor",
     "type": "library",
     "require": {
