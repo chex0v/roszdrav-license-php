@@ -1,0 +1,24 @@
+{
+    "name": "lh/roszdrav-license-php",
+    "description": "Parser information about license from site roszdravnadzor",
+    "type": "library",
+    "require": {
+        "php": ">=7.1",
+        "guzzlehttp/guzzle": "^7.0",
+        "larapack/dd": "1.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5.10"
+    },
+    "autoload": {
+        "psr-4": {
+            "Lh\\RoszdravLicensePhp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "chex0v",
+            "email": "chexov34@gmail.com"
+        }
+    ]
+}
