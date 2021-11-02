@@ -2,7 +2,6 @@
     "name": "chex0v/roszdrav-license-php",
     "description": "Parser information about license from site roszdravnadzor",
     "type": "library",
-    "version": "0.0.2",
     "license": "Apache-2.0",
     "require": {
         "php": ">=7.1",
