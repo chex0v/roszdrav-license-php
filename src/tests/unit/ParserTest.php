@@ -23,13 +23,19 @@ class ParserTest extends TestCase
                 'date_end' => 'Бессрочно',
                 'name' => 'Департамент Смоленской области по здравоохранению'
             ]
-        ]);
+        ], 'Стандартный ответ не совпадает с ответом сервиса');
     }
 
     public function testNoResult()
     {
         $this->expectException(\Exception::class);
         Parser::find('null');
+    }
+
+    public function testMoreResult()
+    {
+        $result = Parser::find('11111');
+        $this->assertGreaterThan(1,count($result), "Должно быть несколько вариантов для поиска номера лицензии");
     }
 
     protected function setUp(): void

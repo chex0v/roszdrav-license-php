@@ -71,7 +71,7 @@ class ParserService
             "draw" => 3,
             'columns' => $columns,
             'start' => 0,
-            'length' => 25,
+            'length' => 100,
             'search' => [
                 'value' => '',
                 'regex' => false

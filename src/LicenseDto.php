@@ -43,13 +43,13 @@ class LicenseDto
         $dto = new self();
         $dto->license = $data['col1']['label'];
         $dto->date = $data['col2']['label'];
-        $dto->address = $data['col5']['label'];
+        $dto->address = $data['col5']['title'] ?? $data['col5']['label'];;
         $dto->ogrn = $data['col6']['label'];
         $dto->inn = $data['col7']['label'];
         $dto->grantLicense = $data['col10']['label'];
         $dto->dateStart = $data['col11']['label'];
         $dto->dateEnd = $data['col12']['label'];
-        $dto->name = $data['col4']['label'];
+        $dto->name = $data['col4']['title'] ?? $data['col4']['label'];
         return $dto;
     }
 
