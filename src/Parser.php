@@ -20,7 +20,6 @@ class Parser
      */
     public static function find(string $license): array
     {
-        return (new ParserService())->getInformationByLicenceNumber($license)
-            ->toArray();
+        return (new ParserService())->getInformationByLicenceNumber($license);
     }
 }

@@ -15,6 +15,24 @@ class LicenseDto
     public $dateEnd;
 
     /**
+     * @param array $data
+     * @return array
+     */
+    public static function fromServiceArray(array $data)
+    {
+        $collections = [];
+        $data = $data['data'];
+
+        foreach ($data as $_data) {
+            $value = static::fromService($_data);
+            if ($value) {
+                $collections[] = $value->toArray();
+            }
+        }
+        return $collections;
+    }
+
+    /**
      * Преобразования данных из массива от сервиса в объектный вид
      *
      * @param array $data
@@ -22,7 +40,6 @@ class LicenseDto
      */
     public static function fromService(array $data): LicenseDto
     {
-        $data = $data['data'][0];
         $dto = new self();
         $dto->license = $data['col1']['label'];
         $dto->date = $data['col2']['label'];

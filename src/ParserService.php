@@ -21,10 +21,10 @@ class ParserService
 
     /**
      * @param string $number
-     * @return LicenseDto
-     * @throws \GuzzleHttp\Exception\GuzzleException|\Exception
+     * @return array
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getInformationByLicenceNumber(string $number): LicenseDto
+    public function getInformationByLicenceNumber(string $number): array
     {
         $params = $this->getBodyRequest();
         $params['q_no'] = $number;
@@ -50,7 +50,7 @@ class ParserService
             throw new \Exception($message);
         }
 
-        return LicenseDto::fromService($arrData);
+        return LicenseDto::fromServiceArray($arrData);
     }
 
     protected function getBodyRequest(): array
