@@ -2,7 +2,7 @@
 
 namespace Lh\RoszdravLicensePhp;
 
-class LicenseDto
+class LicenseDto implements IDto
 {
     public $license;
     public $name;
@@ -14,19 +14,15 @@ class LicenseDto
     public $dateStart;
     public $dateEnd;
 
-    /**
-     * @param array $data
-     * @return array
-     */
-    public static function fromServiceArray(array $data)
+    public static function from(IDtoData $data): array
     {
         $collections = [];
-        $data = $data['data'];
+        $data = $data->getData()['data'];
 
         foreach ($data as $_data) {
             $value = static::fromService($_data);
             if ($value) {
-                $collections[] = $value->toArray();
+                $collections[] = $value->to();
             }
         }
         return $collections;
@@ -49,11 +45,11 @@ class LicenseDto
         $dto->grantLicense = $data['col10']['label'];
         $dto->dateStart = $data['col11']['label'];
         $dto->dateEnd = $data['col12']['label'];
-        $dto->name = $data['col4']['title'] ?? $data['col4']['label'];
+        $dto->name = $data['col3']['title'] ?? $data['col3']['label'];
         return $dto;
     }
 
-    public function toArray(): array
+    public function to(): array
     {
         return [
             'license' => $this->license,

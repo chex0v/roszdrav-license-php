@@ -4,30 +4,46 @@ namespace Lh\RoszdravLicensePhp;
 
 use GuzzleHttp\Client;
 
-class ParserService
+class LicenseClientService implements IClientLicenseService
 {
-    private $url = 'https://roszdravnadzor.gov.ru/';
-    private $client;
+    private static $instances = [];
 
-    public function __construct()
+    protected function __clone() { }
+
+    public function __wakeup()
+    {
+        throw new \Exception("Cannot unserialize a singleton.");
+    }
+
+    public static function getInstance(): LicenseClientService
+    {
+        $cls = static::class;
+        if (!isset(self::$instances[$cls])) {
+            self::$instances[$cls] = new static();
+        }
+
+        return self::$instances[$cls];
+    }
+
+    protected function __construct()
     {
         $this->client = new Client(
             [
-                'base_uri' => $this->url,
+                'base_uri' => $this->getUrl(),
                 'timeout' => 60,
             ]
         );
     }
 
-    /**
-     * @param string $number
-     * @return array
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
-    public function getInformationByLicenceNumber(string $number): array
+    public function getUrl(): string
+    {
+       return 'https://roszdravnadzor.gov.ru/';
+    }
+
+    public function sendRequest(string $licenseNumber)
     {
         $params = $this->getBodyRequest();
-        $params['q_no'] = $number;
+        $params['q_no'] = $licenseNumber;
         $response = $this->client->post('ajax/services/licenses', [
             'form_params' => $params,
             'headers' => [
@@ -43,14 +59,7 @@ class ParserService
 
         $string = $response->getBody()->getContents();
 
-        $arrData = json_decode($string, true);
-
-        if (!isset($arrData['data'])) {
-            $message = $arrData['message'] ?? 'Документов не найдено.';
-            throw new \Exception($message);
-        }
-
-        return LicenseDto::fromServiceArray($arrData);
+        return json_decode($string, true);
     }
 
     protected function getBodyRequest(): array
@@ -88,5 +97,4 @@ class ParserService
             'q_org_label' => ''
         ];
     }
-
 }
