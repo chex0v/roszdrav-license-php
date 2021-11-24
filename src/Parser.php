@@ -3,6 +3,8 @@
 namespace Lh\RoszdravLicensePhp;
 
 use GuzzleHttp\Exception\GuzzleException;
+use Lh\RoszdravLicensePhp\Format\LicenseFormatFactory;
+use Lh\RoszdravLicensePhp\Service\LicenseServiceFactory;
 
 /**
  * Facade for parsing license RF from https://roszdravnadzor.gov.ru
@@ -21,6 +23,6 @@ class Parser
     public static function find(string $license): array
     {
         return LicenseFormatFactory::getFormat()
-                ->format(LicenseServiceFactory::getService()->sendRequest($license));
+            ->format(LicenseServiceFactory::getService()->sendRequest($license));
     }
 }

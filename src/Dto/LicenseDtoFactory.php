@@ -1,6 +1,6 @@
 <?php
 
-namespace Lh\RoszdravLicensePhp;
+namespace Lh\RoszdravLicensePhp\Dto;
 
 class LicenseDtoFactory
 {

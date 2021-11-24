@@ -1,6 +1,9 @@
 <?php
 
-namespace Lh\RoszdravLicensePhp;
+namespace Lh\RoszdravLicensePhp\Service;
+
+use Lh\RoszdravLicensePhp\Dto\AbstractArrayDto;
+use Lh\RoszdravLicensePhp\Dto\IDtoData;
 
 class LicenseDataFromService extends AbstractArrayDto implements IDtoData
 {

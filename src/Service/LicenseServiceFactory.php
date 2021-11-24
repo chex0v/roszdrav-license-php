@@ -1,7 +1,6 @@
 <?php
 
-namespace Lh\RoszdravLicensePhp;
-
+namespace Lh\RoszdravLicensePhp\Service;
 
 class LicenseServiceFactory
 {

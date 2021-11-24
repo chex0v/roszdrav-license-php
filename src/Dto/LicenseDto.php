@@ -1,6 +1,6 @@
 <?php
 
-namespace Lh\RoszdravLicensePhp;
+namespace Lh\RoszdravLicensePhp\Dto;
 
 class LicenseDto implements IDto
 {
@@ -25,6 +25,21 @@ class LicenseDto implements IDto
         return $collections;
     }
 
+    public function to(): array
+    {
+        return [
+            'license' => $this->license,
+            'date' => $this->date,
+            'address' => $this->address,
+            'ogrn' => $this->ogrn,
+            'inn' => $this->inn,
+            'grant_license' => $this->grantLicense,
+            'date_start' => $this->dateStart,
+            'date_end' => $this->dateEnd,
+            'name' => $this->name
+        ];
+    }
+
     /**
      * Преобразования данных из массива от сервиса в объектный вид
      *
@@ -44,20 +59,5 @@ class LicenseDto implements IDto
         $dto->dateEnd = $data['col12']['label'];
         $dto->name = $data['col3']['title'] ?? $data['col3']['label'];
         return $dto;
-    }
-
-    public function to(): array
-    {
-        return [
-            'license' => $this->license,
-            'date' => $this->date,
-            'address' => $this->address,
-            'ogrn' => $this->ogrn,
-            'inn' => $this->inn,
-            'grant_license' => $this->grantLicense,
-            'date_start' => $this->dateStart,
-            'date_end' => $this->dateEnd,
-            'name' => $this->name
-        ];
     }
 }

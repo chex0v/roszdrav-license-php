@@ -1,6 +1,6 @@
 <?php
 
-namespace Lh\RoszdravLicensePhp;
+namespace Lh\RoszdravLicensePhp\Format;
 
 interface IFormatData
 {

@@ -1,6 +1,10 @@
 <?php
 
-namespace Lh\RoszdravLicensePhp;
+namespace Lh\RoszdravLicensePhp\Format;
+
+use Lh\RoszdravLicensePhp\Dto\IDto;
+use Lh\RoszdravLicensePhp\Dto\LicenseDtoFactory;
+use Lh\RoszdravLicensePhp\Service\LicenseDataFromService;
 
 class LicenseFormatData implements IFormatData
 {

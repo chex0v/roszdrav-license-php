@@ -1,29 +1,12 @@
 <?php
 
-namespace Lh\RoszdravLicensePhp;
+namespace Lh\RoszdravLicensePhp\Service;
 
 use GuzzleHttp\Client;
 
 class LicenseClientService implements IClientLicenseService
 {
     private static $instances = [];
-
-    protected function __clone() { }
-
-    public function __wakeup()
-    {
-        throw new \Exception("Cannot unserialize a singleton.");
-    }
-
-    public static function getInstance(): LicenseClientService
-    {
-        $cls = static::class;
-        if (!isset(self::$instances[$cls])) {
-            self::$instances[$cls] = new static();
-        }
-
-        return self::$instances[$cls];
-    }
 
     protected function __construct()
     {
@@ -37,7 +20,22 @@ class LicenseClientService implements IClientLicenseService
 
     public function getUrl(): string
     {
-       return 'https://roszdravnadzor.gov.ru/';
+        return 'https://roszdravnadzor.gov.ru/';
+    }
+
+    public static function getInstance(): LicenseClientService
+    {
+        $cls = static::class;
+        if (!isset(self::$instances[$cls])) {
+            self::$instances[$cls] = new static();
+        }
+
+        return self::$instances[$cls];
+    }
+
+    public function __wakeup()
+    {
+        throw new \Exception("Cannot unserialize a singleton.");
     }
 
     public function sendRequest(string $licenseNumber)
@@ -96,5 +94,9 @@ class LicenseClientService implements IClientLicenseService
             'dt_to' => '',
             'q_org_label' => ''
         ];
+    }
+
+    protected function __clone()
+    {
     }
 }

@@ -23,7 +23,7 @@ class ParserTest extends TestCase
                 'date_end' => 'Бессрочно',
                 'name' => 'смоленское областное государственное бюджетное образовательное учреждение для детей, нуждающихся в длительном лечении, "Шумячская санаторная школа-интернат"'
             ]
-        ], 'Стандартный ответ не совпадает с ответом сервиса');
+        ],                  'Стандартный ответ не совпадает с ответом сервиса');
     }
 
     public function testNoResult()
@@ -35,7 +35,7 @@ class ParserTest extends TestCase
     public function testMoreResult()
     {
         $result = Parser::find('11111');
-        $this->assertGreaterThan(1,count($result), "Должно быть несколько вариантов для поиска номера лицензии");
+        $this->assertGreaterThan(1, count($result), "Должно быть несколько вариантов для поиска номера лицензии");
     }
 
     protected function setUp(): void
