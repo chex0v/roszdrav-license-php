@@ -20,10 +20,7 @@ class LicenseDto implements IDto
         $data = $data->getData()['data'];
 
         foreach ($data as $_data) {
-            $value = static::fromService($_data);
-            if ($value) {
-                $collections[] = $value->to();
-            }
+            $collections[] = static::fromService($_data)->to();
         }
         return $collections;
     }
